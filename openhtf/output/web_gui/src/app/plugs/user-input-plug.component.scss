@@ -23,6 +23,21 @@
   margin: 0;
 }
 
+:host ::ng-deep .prompt-pass {
+  color: $theme-green;
+  font-weight: 600;
+}
+
+:host ::ng-deep .prompt-fail {
+  color: $theme-red;
+  font-weight: 600;
+}
+
+:host ::ng-deep .prompt-large {
+  font-size: 32px;
+  line-height: 1.2;
+}
+
 .user-input-has-error {
   border-color: $theme-red;
 
