@@ -68,6 +68,8 @@ prompt to continue the example.
 6.  [`leds_yes_no_cancel.py`](leds_yes_no_cancel.py): demonstrates optional
     `UserInput` prompt buttons (Yes/No/Cancel) and how the selected button text
     is returned.
+7.  [`prompt_html.py`](prompt_html.py): demonstrates `prompt_html` for rich
+    web UI operator prompts with pass/fail styling.
 
 ### Tutorials
 

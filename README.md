@@ -54,6 +54,43 @@ Note: some of the `examples/` require protocol buffer code to be generated via
 library to be installed
 ([additional instructions](CONTRIBUTING.md#setting-up-your-dev-environment)).
 
+## Operator prompts (UserInput)
+OpenHTF provides the `UserInput` plug for operator prompts in tests. Use the
+`message` argument for plain text (console + web UI). For rich formatting in
+the web UI, pass HTML in `prompt_html`. The console still shows `message`.
+
+Allowed HTML tags in `prompt_html`:
+`div`, `span`, `p`, `br`, `strong`, `em`, `b`, `i`, `u`, `ul`, `ol`, `li`,
+`h1`, `h2`, `h3`, `h4`.
+
+Allowed CSS classes:
+`prompt-pass`, `prompt-fail`, `prompt-large`.
+
+Allowed inline styles:
+`font-size`, `font-weight`, `color`, `text-align`.
+
+Example:
+
+```python
+from openhtf import plugs
+from openhtf.plugs import user_input
+
+
+@plugs.plug(prompts=user_input.UserInput)
+def operator_prompt_example(test, prompts):
+  response = prompts.prompt(
+      message='Verify the DUT status in the fixture.',
+      prompt_html=(
+          '<div class="prompt-large prompt-pass" style="text-align:center;">'
+          'PASS'
+          '</div>'
+          '<div>Click Continue to proceed.</div>'
+      ),
+      button_1_text='Continue',
+      button_2_text='Abort')
+  test.logger.info('Operator selected: %s', response)
+```
+
 ## Nomenclature
 OpenHTF uses certain nomenclature internally for several of its core concepts.
 Some of the more important terms are listed here for clarity.
