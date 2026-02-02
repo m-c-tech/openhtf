@@ -1,5 +1,11 @@
 **DISCLAIMER:** This is not an official Google product.
 
+## Fork notice
+This repository is a fork of https://github.com/google/openhtf maintained by
+https://github.com/m-c-tech. It includes local fixes and tooling adjustments
+that may not be present in upstream. For the official project, use the upstream
+repository. For a summary of changes in this fork, see [CHANGELOG](CHANGELOG).
+
 # OpenHTF
 The open-source hardware testing framework.
 
