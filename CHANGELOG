@@ -4,6 +4,12 @@ Fork changes (m-c-tech)
     rich `prompt_html` rendering in the web UI.
 * Added optional user-configurable buttons for `UserInput` prompts.
 * Added examples and documentation for the new user input prompt features.
+* Cherry-picked upstream PR #1164 to remove SockJS server endpoints and use
+    native websocket handlers in station/dashboard servers.
+* Updated web GUI frontend subscriptions to use native WebSocket and removed
+    external SockJS CDN dependency.
+* Fixed web GUI websocket message handling by parsing JSON string payloads for
+    dashboard/station subscription updates.
 
 Changes for 2.0.
 
