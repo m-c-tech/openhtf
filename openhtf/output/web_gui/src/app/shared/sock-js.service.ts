@@ -15,26 +15,42 @@
  */
 
 /**
- * Provider for SockJS.
+ * Provider for websocket connections.
  *
  * This allows us to mock socket communication in unit tests.
  */
 
 import { Injectable } from '@angular/core';
 
-// Global provided by the sockjs_client library.
-declare const SockJS: new (url: string) => SockJsObject;
+function toWebSocketUrl(url: string) {
+  if (url.startsWith('ws://') || url.startsWith('wss://')) {
+    return url;
+  }
+  if (url.startsWith('http://')) {
+    return `ws://${url.slice('http://'.length)}`;
+  }
+  if (url.startsWith('https://')) {
+    return `wss://${url.slice('https://'.length)}`;
+  }
+  const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+  if (url.startsWith('/')) {
+    return `${protocol}://${window.location.host}${url}`;
+  }
+  return `${protocol}://${url}`;
+}
 
 export interface SockJsObject {
   close: () => void;
-  onclose: {};
-  onmessage: {};
-  onopen: {};
+  onclose: ((this: WebSocket, ev: CloseEvent) => any)|null;
+  onmessage: ((this: WebSocket, ev: MessageEvent) => any)|null;
+  onopen: ((this: WebSocket, ev: Event) => any)|null;
 }
 
 export interface SockJsMessage { data: string; }
 
 @Injectable()
 export class SockJsService {
-  sockJs = SockJS;
+  sockJs(url: string) {
+    return new WebSocket(toWebSocketUrl(url));
+  }
 }

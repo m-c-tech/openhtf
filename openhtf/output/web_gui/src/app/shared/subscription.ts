@@ -113,7 +113,7 @@ export class Subscription {
 
   private subscribeWithSavedParams() {
     console.debug(`Attempting to subscribe to ${this.url}.`);
-    const sock = new this.sockJsService.sockJs(this.url);
+    const sock = this.sockJsService.sockJs(this.url);
     sock.onopen = () => {
       if (this.sock !== sock) {
         return;

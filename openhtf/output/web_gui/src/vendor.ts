@@ -27,4 +27,3 @@ import '@angularclass/hmr';
 
 // Other vendors
 // You can import js, ts, css, sass, ...
-import 'sockjs-client';
