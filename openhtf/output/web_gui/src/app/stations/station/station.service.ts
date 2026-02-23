@@ -97,6 +97,9 @@ export class StationService extends Subscription {
    * Step 1: Validate that a JSON response matches the expected format.
    */
   private static validateResponse(response: {}) {
+    if (typeof response === 'string') {
+      return JSON.parse(response) as StationApiResponse;
+    }
     // TODO(kenadia): Do validation.
     return response as StationApiResponse;
   }
