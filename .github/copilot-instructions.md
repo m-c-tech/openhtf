@@ -46,6 +46,20 @@ tox
 python -m build
 ```
 
+## Branching
+Always create a feature branch before starting any implementation or experimental work. Never commit directly to `master`.
+
+```bash
+git checkout -b feature/<short-name>
+git push origin feature/<short-name>
+```
+
+If the work is successful, merge into `master`. If not, delete the branch:
+```bash
+git branch -d feature/<short-name>
+git push origin --delete feature/<short-name>
+```
+
 ## Expected Warnings
 - Web GUI build shows existing TypeScript/tslint warnings unrelated to changes.
 - npm install will report many deprecated packages due to legacy Angular/webpack tooling.
